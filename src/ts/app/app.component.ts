@@ -5,7 +5,6 @@ import { Logger } from "./services/logger";
 @Component({
     selector: "main",
     template: "<span>{{message}}</span>",
-    providers: [ Logger ],
 })
 export class AppComponent {
 
