@@ -5,6 +5,7 @@ import { AppComponent } from "./app.component";
 
 import { Logger } from "./services/logger";
 import { Colors } from "./services/colors";
+import { ColorsImmutable } from "./services/colors-immutable";
 
 import "../../scss/styles.scss";
 
@@ -12,6 +13,6 @@ import "../../scss/styles.scss";
     imports: [ BrowserModule ],
     declarations: [ AppComponent ],
     bootstrap: [ AppComponent ],
-    providers: [ Logger, Colors ],
+    providers: [ Logger, { provide: Colors, useClass: ColorsImmutable } ],
 })
 export class AppModule { }
