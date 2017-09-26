@@ -1,9 +1,10 @@
 import { Injectable } from "@angular/core";
 
+import { Colors } from "../models/colors";
 import { Logger } from "./logger";
 
 @Injectable()
-export class ColorsImmutable {
+export class ColorsImmutable implements Colors {
     
     private colorList: string[] = [];
 

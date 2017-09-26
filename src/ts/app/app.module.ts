@@ -4,12 +4,13 @@ import { BrowserModule } from "@angular/platform-browser";
 import { AppComponent } from "./app.component";
 
 import { Logger, simpleLogger } from "./services/logger";
-import { Colors } from "./services/colors";
+import { ColorsToken } from "./tokens/colors-token";
+import { ColorsMutable } from "./services/colors-mutable";
 import { ColorsImmutable } from "./services/colors-immutable";
 
 import "../../scss/styles.scss";
 
-const useImmutable = false;
+/*const useImmutable = false;
 
 const colorsFactory = (logger: Logger) => {
 
@@ -18,7 +19,7 @@ const colorsFactory = (logger: Logger) => {
     } else {
         return new Colors(logger);
     }
-}
+}*/
 
 @NgModule({
     imports: [ BrowserModule ],
@@ -26,7 +27,7 @@ const colorsFactory = (logger: Logger) => {
     bootstrap: [ AppComponent ],
     providers: [ 
         { provide: Logger, useValue: simpleLogger }, 
-        { provide: Colors, useFactory: colorsFactory, deps: [ Logger ] } 
+        { provide: ColorsToken, useClass: ColorsMutable } 
     ],
 })
 export class AppModule { }
