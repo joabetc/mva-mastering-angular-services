@@ -9,13 +9,24 @@ import { ColorsImmutable } from "./services/colors-immutable";
 
 import "../../scss/styles.scss";
 
+const useImmutable = false;
+
+const colorsFactory = (logger: Logger) => {
+
+    if (useImmutable) {
+        return new ColorsImmutable(logger);
+    } else {
+        return new Colors(logger);
+    }
+}
+
 @NgModule({
     imports: [ BrowserModule ],
     declarations: [ AppComponent ],
     bootstrap: [ AppComponent ],
     providers: [ 
         { provide: Logger, useValue: simpleLogger }, 
-        { provide: Colors, useClass: ColorsImmutable } 
+        { provide: Colors, useFactory: colorsFactory, deps: [ Logger ] } 
     ],
 })
 export class AppModule { }
