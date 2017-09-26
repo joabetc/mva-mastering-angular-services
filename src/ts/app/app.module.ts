@@ -3,7 +3,7 @@ import { BrowserModule } from "@angular/platform-browser";
 
 import { AppComponent } from "./app.component";
 
-import { Logger } from "./services/logger";
+import { Logger, simpleLogger } from "./services/logger";
 import { Colors } from "./services/colors";
 import { ColorsImmutable } from "./services/colors-immutable";
 
@@ -13,6 +13,9 @@ import "../../scss/styles.scss";
     imports: [ BrowserModule ],
     declarations: [ AppComponent ],
     bootstrap: [ AppComponent ],
-    providers: [ Logger, { provide: Colors, useClass: ColorsImmutable } ],
+    providers: [ 
+        { provide: Logger, useValue: simpleLogger }, 
+        { provide: Colors, useClass: ColorsImmutable } 
+    ],
 })
 export class AppModule { }
